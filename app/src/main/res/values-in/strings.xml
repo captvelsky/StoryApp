@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">StoryApp</string>
+    <string name="image_description_story">gambar cerita</string>
+    <string name="create_story">buat cerita</string>
+    <string name="image_description_upload">upload gambar</string>
+    <string name="button_camera">Kamera</string>
+    <string name="button_gallery">Galeri</string>
+    <string name="edittext_hint">Masukkan deskripsi cerita disini</string>
+    <string name="button_upload">Upload</string>
+    <string name="text_welcome">Selamat datang di StoryApp!</string>
+    <string name="text_instruction_login">masukkan email dan password yang\ntelah didaftarkan terlebih dahulu</string>
+    <string name="button_login">Login</string>
+    <string name="button_create_account">Buat akun</string>
+    <string name="login_illustration">ilustrasi login</string>
+    <string name="register_illustration">ilustrasi register</string>
+    <string name="text_create_account">Mari Membuat Akun!</string>
+    <string name="text_instruction_register">masukkan data anda dibawah</string>
+    <string name="hint_username">johndoe</string>
+    <string name="button_register">Register</string>
+    <string name="textbutton_login">Saya telah memiliki akun</string>
+    <string name="menu_logout">logout</string>
+    <string name="menu_language">bahasa</string>
+    <string name="connection_warning">Tolong periksa koneksi internet anda</string>
+    <string name="choose_picture">Pilih Foto</string>
+    <string name="upload_success">Upload berhasil</string>
+    <string name="upload_failed">Upload gagal</string>
+    <string name="upload_warning">Tolong pilih gambar terlebih dahulu</string>
+    <string name="login_success">Login berhasil</string>
+    <string name="email_input_warning">Tolong masukkan email anda</string>
+    <string name="password_input_warning">Tolong masukkan password anda</string>
+    <string name="login_input_warning">Tolong masukkan email dan password anda dengan benar</string>
+    <string name="register_success">Registrasi berhasil</string>
+    <string name="username_warning">Tolong masukkan username anda</string>
+    <string name="register_input_warning">Tolong masukkan data dengan benar</string>
+    <string name="textinput_email_warning">Email tidak valid</string>
+    <string name="textinput_password_warning">Password kurang dari 6 karakter</string>
+    <string name="detail_laceholder">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</string>
+    <string name="story_desc_warning">Tolong masukkan deskripsi cerita</string>
+    <string name="story_image_desc">gambar cerita</string>
+</resources>
