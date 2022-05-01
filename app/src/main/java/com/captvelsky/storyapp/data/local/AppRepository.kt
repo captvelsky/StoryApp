@@ -64,6 +64,16 @@ class AppRepository @Inject constructor(
         }
     }
 
+    fun getStoriesLocation(token: String): Flow<Result<StoryResponse>> = flow {
+        try {
+            val userToken = "Bearer $token"
+            val response = apiService.getStories(userToken, size = 30, location = 1)
+            emit(Result.success(response))
+        } catch (e: Exception) {
+            emit(Result.failure(e))
+        }
+    }
+
     suspend fun uploadImage(
         token: String,
         file: MultipartBody.Part,

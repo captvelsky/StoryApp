@@ -72,6 +72,12 @@ class HomeActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
+            R.id.locationMenu -> {
+                Intent(this, MapsActivity::class.java).also {
+                    startActivity(it)
+                }
+                return true
+            }
             R.id.languageMenu -> {
                 startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
                 return true
