@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.Navigation
+import androidx.paging.ExperimentalPagingApi
 import com.captvelsky.storyapp.R
 import com.captvelsky.storyapp.databinding.FragmentLoginBinding
 import com.captvelsky.storyapp.ui.activity.HomeActivity
@@ -18,6 +19,7 @@ import com.captvelsky.storyapp.ui.model.LoginViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
+@ExperimentalPagingApi
 @AndroidEntryPoint
 class LoginFragment : Fragment() {
 

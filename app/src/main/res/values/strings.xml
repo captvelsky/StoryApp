@@ -38,4 +38,5 @@
     <string name="story_desc_warning">Please fill your story description</string>
     <string name="story_image_desc">story image</string>
     <string name="location">Location</string>
+    <string name="retry">Retry</string>
 </resources>

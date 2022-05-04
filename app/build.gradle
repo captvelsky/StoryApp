@@ -75,4 +75,12 @@ dependencies {
     implementation "androidx.navigation:navigation-fragment-ktx:2.4.2"
     implementation "androidx.navigation:navigation-ui-ktx:2.4.2"
     implementation("androidx.navigation:navigation-runtime-ktx:2.4.2")
+
+    //paging
+    implementation "androidx.paging:paging-runtime-ktx:3.1.1"
+
+    // Room
+    implementation "androidx.room:room-ktx:2.4.2"
+    implementation 'androidx.room:room-paging:2.4.2'
+    kapt "androidx.room:room-compiler:2.4.2"
 }

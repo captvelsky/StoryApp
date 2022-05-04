@@ -7,18 +7,18 @@ import android.provider.Settings
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.lifecycle.viewModelScope
+import androidx.paging.ExperimentalPagingApi
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.captvelsky.storyapp.R
+import com.captvelsky.storyapp.adapter.LoadingStateAdapter
 import com.captvelsky.storyapp.adapter.StoryAdapter
 import com.captvelsky.storyapp.databinding.ActivityHomeBinding
 import com.captvelsky.storyapp.ui.model.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
 
+@ExperimentalPagingApi
 @AndroidEntryPoint
 class HomeActivity : AppCompatActivity() {
 
@@ -38,23 +38,16 @@ class HomeActivity : AppCompatActivity() {
         storyAdapter = StoryAdapter()
         recyclerView = binding.rvStories
         recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = storyAdapter
+        recyclerView.adapter = storyAdapter.withLoadStateFooter(
+            footer = LoadingStateAdapter {
+                storyAdapter.retry()
+            }
+        )
         recyclerView.setHasFixedSize(true)
 
-        viewModel.viewModelScope.launch {
-            viewModel.getStories(intent.getStringExtra(EXTRA_TOKEN)!!).collect { result ->
-                result.onSuccess {
-                    storyAdapter.submitList(it.listStory)
-                    showLoading(false)
-                }
-                result.onFailure {
-                    Toast.makeText(
-                        this@HomeActivity,
-                        getString(R.string.connection_warning),
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-            }
+        viewModel.getStories(intent.getStringExtra(EXTRA_TOKEN)!!).observe(this) {
+            storyAdapter.submitData(lifecycle, it)
+            showLoading(false)
         }
 
         binding.btnCreateStory.setOnClickListener {

@@ -13,6 +13,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.core.content.FileProvider
 import androidx.lifecycle.viewModelScope
+import androidx.paging.ExperimentalPagingApi
 import com.captvelsky.storyapp.R
 import com.captvelsky.storyapp.createCustomTempFile
 import com.captvelsky.storyapp.databinding.ActivityUploadBinding
@@ -31,6 +32,7 @@ import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream
 
+@ExperimentalPagingApi
 @AndroidEntryPoint
 class UploadActivity : AppCompatActivity() {
 

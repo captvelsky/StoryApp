@@ -1,6 +1,13 @@
 package com.captvelsky.storyapp.data.local
 
 import android.util.Log
+import androidx.paging.ExperimentalPagingApi
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import com.captvelsky.storyapp.data.local.database.StoryDatabase
+import com.captvelsky.storyapp.data.local.database.StoryRemoteMediator
+import com.captvelsky.storyapp.data.local.database.StoryResponseItem
 import com.captvelsky.storyapp.data.remote.response.StoryUploadResponse
 import com.captvelsky.storyapp.data.remote.response.LoginResponse
 import com.captvelsky.storyapp.data.remote.response.RegisterResponse
@@ -12,8 +19,11 @@ import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import javax.inject.Inject
 
+@ExperimentalPagingApi
 class AppRepository @Inject constructor(
-    private val apiService: ApiService, private val preferences: UserPreferences
+    private val apiService: ApiService,
+    private val preferences: UserPreferences,
+    private val storyDatabase: StoryDatabase
 ) {
 
     fun getAuthToken(): Flow<String?> = preferences.getUserToken()
@@ -48,28 +58,26 @@ class AppRepository @Inject constructor(
         }
     }
 
-    suspend fun getStories(
-        token: String,
-        page: Int? = null,
-        size: Int? = null
-    ): Flow<Result<StoryResponse>> = flow {
-        try {
-            val userToken = "Bearer $token"
-            val response = apiService.getStories(userToken, page, size)
-            Log.d("200", "Success")
-            emit(Result.success(response))
-        } catch (e: Exception) {
-            Log.e("400", "Failed")
-            emit(Result.failure(e))
-        }
+    fun getStories(
+        token: String
+    ): Flow<PagingData<StoryResponseItem>> {
+        return Pager(
+            config = PagingConfig(pageSize = 5),
+            remoteMediator = StoryRemoteMediator(storyDatabase, apiService, "Bearer $token"),
+            pagingSourceFactory = {
+                storyDatabase.storyDao().getAllStory()
+            }
+        ).flow
     }
 
     fun getStoriesLocation(token: String): Flow<Result<StoryResponse>> = flow {
         try {
             val userToken = "Bearer $token"
-            val response = apiService.getStories(userToken, size = 30, location = 1)
+            val response = apiService.getStories(userToken, size = 20, location = 1)
+            Log.d("200", "Success")
             emit(Result.success(response))
         } catch (e: Exception) {
+            Log.e("400", "Failed")
             emit(Result.failure(e))
         }
     }
