@@ -8,7 +8,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-@ExperimentalPagingApi
+@OptIn(ExperimentalPagingApi::class)
 @HiltViewModel
 class LoginViewModel @Inject constructor(private val repository: AppRepository) : ViewModel() {
 

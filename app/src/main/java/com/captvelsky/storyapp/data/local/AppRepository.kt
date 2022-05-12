@@ -6,8 +6,6 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.captvelsky.storyapp.data.local.database.StoryDatabase
-import com.captvelsky.storyapp.data.local.database.StoryRemoteMediator
-import com.captvelsky.storyapp.data.local.database.StoryResponseItem
 import com.captvelsky.storyapp.data.remote.response.StoryUploadResponse
 import com.captvelsky.storyapp.data.remote.response.LoginResponse
 import com.captvelsky.storyapp.data.remote.response.RegisterResponse
@@ -19,7 +17,7 @@ import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import javax.inject.Inject
 
-@ExperimentalPagingApi
+@OptIn(ExperimentalPagingApi::class)
 class AppRepository @Inject constructor(
     private val apiService: ApiService,
     private val preferences: UserPreferences,
@@ -73,7 +71,7 @@ class AppRepository @Inject constructor(
     fun getStoriesLocation(token: String): Flow<Result<StoryResponse>> = flow {
         try {
             val userToken = "Bearer $token"
-            val response = apiService.getStories(userToken, size = 20, location = 1)
+            val response = apiService.getStories(userToken, null, size = 100, location = 1)
             Log.d("200", "Success")
             emit(Result.success(response))
         } catch (e: Exception) {
@@ -85,11 +83,13 @@ class AppRepository @Inject constructor(
     suspend fun uploadImage(
         token: String,
         file: MultipartBody.Part,
-        description: RequestBody
+        description: RequestBody,
+        lat: RequestBody?,
+        lon: RequestBody?
     ): Flow<Result<StoryUploadResponse>> = flow {
         try {
             val userToken = "Bearer $token"
-            val response = apiService.uploadImage(userToken, file, description)
+            val response = apiService.uploadImage(userToken, file, description, lat, lon)
             Log.d("200", "Success")
             emit(Result.success(response))
         } catch (e: Exception) {

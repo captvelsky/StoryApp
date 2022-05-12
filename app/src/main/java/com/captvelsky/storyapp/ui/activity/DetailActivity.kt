@@ -4,13 +4,13 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import com.bumptech.glide.Glide
-import com.captvelsky.storyapp.data.remote.response.ListStory
+import com.captvelsky.storyapp.data.local.StoryResponseItem
 import com.captvelsky.storyapp.databinding.ActivityDetailBinding
 
 class DetailActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDetailBinding
-    private lateinit var story: ListStory
+    private lateinit var story: StoryResponseItem
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

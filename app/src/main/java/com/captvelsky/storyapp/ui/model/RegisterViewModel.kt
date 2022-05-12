@@ -6,7 +6,7 @@ import com.captvelsky.storyapp.data.local.AppRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
-@ExperimentalPagingApi
+@OptIn(ExperimentalPagingApi::class)
 @HiltViewModel
 class RegisterViewModel @Inject constructor(private val repository: AppRepository) : ViewModel() {
 

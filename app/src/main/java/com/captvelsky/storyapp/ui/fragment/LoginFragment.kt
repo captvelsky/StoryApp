@@ -19,7 +19,7 @@ import com.captvelsky.storyapp.ui.model.LoginViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
-@ExperimentalPagingApi
+@OptIn(ExperimentalPagingApi::class)
 @AndroidEntryPoint
 class LoginFragment : Fragment() {
 
@@ -99,6 +99,11 @@ class LoginFragment : Fragment() {
                 }
             }
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     private fun showLoading(state: Boolean) {

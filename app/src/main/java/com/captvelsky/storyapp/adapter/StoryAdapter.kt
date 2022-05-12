@@ -11,7 +11,7 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.captvelsky.storyapp.data.local.database.StoryResponseItem
+import com.captvelsky.storyapp.data.local.StoryResponseItem
 import com.captvelsky.storyapp.databinding.ItemRowStoriesBinding
 import com.captvelsky.storyapp.ui.activity.DetailActivity
 import com.captvelsky.storyapp.ui.activity.DetailActivity.Companion.EXTRA_DETAIL

@@ -1,4 +1,4 @@
-package com.captvelsky.storyapp.data.local.database
+package com.captvelsky.storyapp.data.local
 
 import android.os.Parcelable
 import androidx.room.Entity
@@ -9,6 +9,7 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 @Entity(tableName = "story")
 data class StoryResponseItem(
+
     @PrimaryKey
     @field:SerializedName("id")
     val id: String,

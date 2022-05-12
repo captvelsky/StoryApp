@@ -10,7 +10,7 @@ import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import javax.inject.Inject
 
-@ExperimentalPagingApi
+@OptIn(ExperimentalPagingApi::class)
 @HiltViewModel
 class UploadViewModel @Inject constructor(private val repository: AppRepository) : ViewModel() {
 
@@ -19,6 +19,9 @@ class UploadViewModel @Inject constructor(private val repository: AppRepository)
     suspend fun uploadImage(
         token: String,
         file: MultipartBody.Part,
-        description: RequestBody
-    ): Flow<Result<StoryUploadResponse>> = repository.uploadImage(token, file, description)
+        description: RequestBody,
+        lat: RequestBody?,
+        lon: RequestBody?
+    ): Flow<Result<StoryUploadResponse>> =
+        repository.uploadImage(token, file, description, lat, lon)
 }

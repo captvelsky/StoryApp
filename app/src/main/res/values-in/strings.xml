@@ -23,21 +23,19 @@
     <string name="menu_language">bahasa</string>
     <string name="connection_warning">Tolong periksa koneksi internet anda</string>
     <string name="choose_picture">Pilih Foto</string>
-    <string name="upload_success">Upload berhasil</string>
     <string name="upload_failed">Upload gagal</string>
     <string name="upload_warning">Tolong pilih gambar terlebih dahulu</string>
-    <string name="login_success">Login berhasil</string>
     <string name="email_input_warning">Tolong masukkan email anda</string>
     <string name="password_input_warning">Tolong masukkan password anda</string>
     <string name="login_input_warning">Tolong masukkan email dan password anda dengan benar</string>
-    <string name="register_success">Registrasi berhasil</string>
     <string name="username_warning">Tolong masukkan username anda</string>
     <string name="register_input_warning">Tolong masukkan data dengan benar</string>
     <string name="textinput_email_warning">Email tidak valid</string>
     <string name="textinput_password_warning">Password kurang dari 6 karakter</string>
-    <string name="detail_laceholder">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</string>
+    <string name="detail_placeholder">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</string>
     <string name="story_desc_warning">Tolong masukkan deskripsi cerita</string>
     <string name="story_image_desc">gambar cerita</string>
     <string name="location">Lokasi</string>
     <string name="retry">Coba Lagi</string>
+    <string name="app_permission_warning">"Tolong aktifkan izin lokasi aplikasi"</string>
 </resources>

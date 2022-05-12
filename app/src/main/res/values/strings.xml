@@ -22,21 +22,19 @@
     <string name="menu_language">language</string>
     <string name="connection_warning">Please check your internet connection</string>
     <string name="choose_picture">Choose a Picture</string>
-    <string name="upload_success">Upload success</string>
     <string name="upload_failed">Upload failed</string>
     <string name="upload_warning">Please choose image first</string>
-    <string name="login_success">Login success</string>
     <string name="email_input_warning">Please fill your email</string>
     <string name="password_input_warning">Please fill your password</string>
     <string name="login_input_warning">Please fill your email and password correctly</string>
-    <string name="register_success">Registration success</string>
     <string name="username_warning">Please fill your username</string>
     <string name="register_input_warning">Please fill the data correctly</string>
     <string name="textinput_email_warning">Invalid Email</string>
     <string name="textinput_password_warning">Password is less than 6 characters</string>
-    <string name="detail_laceholder">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</string>
+    <string name="detail_placeholder">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</string>
     <string name="story_desc_warning">Please fill your story description</string>
     <string name="story_image_desc">story image</string>
     <string name="location">Location</string>
     <string name="retry">Retry</string>
+    <string name="app_permission_warning">Please enable the app\'s location permission</string>
 </resources>

@@ -17,7 +17,7 @@ import com.captvelsky.storyapp.ui.model.RegisterViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
-@ExperimentalPagingApi
+@OptIn(ExperimentalPagingApi::class)
 @AndroidEntryPoint
 class RegisterFragment : Fragment() {
 
@@ -31,7 +31,7 @@ class RegisterFragment : Fragment() {
             btnRegister.setOnClickListener {
                 registerAuth()
             }
-            btntextLogin.setOnClickListener(
+            btnLogin.setOnClickListener(
                 Navigation.createNavigateOnClickListener(R.id.action_registerFragment_to_loginFragment)
             )
         }
@@ -100,6 +100,11 @@ class RegisterFragment : Fragment() {
                 }
             }
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     private fun showLoading(state: Boolean) {

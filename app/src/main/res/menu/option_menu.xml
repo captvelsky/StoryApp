@@ -5,7 +5,7 @@
         android:id="@+id/locationMenu"
         android:icon="@drawable/ic_baseline_my_location_24"
         android:title="@string/location"
-        app:showAsAction="always"/>
+        app:showAsAction="always" />
     <item
         android:id="@+id/logoutMenu"
         android:icon="@drawable/ic_baseline_logout_24"

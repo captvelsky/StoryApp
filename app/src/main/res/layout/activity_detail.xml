@@ -23,6 +23,7 @@
         android:layout_height="320dp"
         android:contentDescription="@string/image_description_story"
         android:scaleType="fitXY"
+        android:transitionName="image"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbar"
@@ -38,6 +39,7 @@
         android:textColor="@color/blue_500"
         android:textSize="16sp"
         android:textStyle="bold"
+        android:transitionName="username"
         app:layout_constraintEnd_toEndOf="@id/iv_story"
         app:layout_constraintStart_toStartOf="@+id/iv_story"
         app:layout_constraintTop_toBottomOf="@id/iv_story"
@@ -52,13 +54,14 @@
         android:layout_marginEnd="16dp"
         android:textColor="@color/black"
         android:textSize="16sp"
+        android:transitionName="description"
         app:layout_constraintEnd_toEndOf="@+id/iv_story"
         app:layout_constraintStart_toStartOf="@+id/iv_story"
         app:layout_constraintTop_toBottomOf="@+id/tv_username"
-        tools:text="@string/detail_laceholder" />
+        tools:text="@string/detail_placeholder" />
 
     <ProgressBar
-        android:id="@+id/progressBar"
+        android:id="@+id/progress_bar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone"

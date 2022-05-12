@@ -8,9 +8,10 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-@ExperimentalPagingApi
+@OptIn(ExperimentalPagingApi::class)
 @HiltViewModel
 class MapsViewModel @Inject constructor(private val repository: AppRepository) : ViewModel() {
+
     fun getStoriesLocation(token: String): Flow<Result<StoryResponse>> =
         repository.getStoriesLocation(token)
 

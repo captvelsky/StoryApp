@@ -25,7 +25,7 @@ import com.google.android.gms.maps.model.MarkerOptions
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
-@ExperimentalPagingApi
+@OptIn(ExperimentalPagingApi::class)
 @AndroidEntryPoint
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
@@ -46,7 +46,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 token = it!!
             }
         }
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
@@ -54,13 +54,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
     }
 
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
-     */
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
 
@@ -69,7 +62,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         mMap.uiSettings.isCompassEnabled = true
         mMap.uiSettings.isMapToolbarEnabled = true
 
-        getMyLocation()
+        getUserLocation()
         getStoryLocation()
     }
 
@@ -78,25 +71,37 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             ActivityResultContracts.RequestPermission()
         ) { isGranted: Boolean ->
             if (isGranted) {
-                getMyLocation()
+                getUserLocation()
+            } else {
+                Toast.makeText(
+                    this,
+                    getString(R.string.app_permission_warning),
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         }
 
-    private fun getMyLocation() {
+    private fun getUserLocation() {
         if (ContextCompat.checkSelfPermission(
-                this.applicationContext,
+                this,
                 Manifest.permission.ACCESS_FINE_LOCATION
             ) == PackageManager.PERMISSION_GRANTED
         ) {
             mMap.isMyLocationEnabled = true
             fusedLocationClient.lastLocation.addOnSuccessListener {
                 if (it != null) {
-                    val location = LatLng(it.latitude, it.longitude)
-                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(location, 8f))
+                    mMap.animateCamera(
+                        CameraUpdateFactory.newLatLngZoom(
+                            LatLng(
+                                it.latitude,
+                                it.longitude
+                            ), 16f
+                        )
+                    )
                 } else {
                     Toast.makeText(
                         this,
-                        "Please enable your location permission",
+                        getString(R.string.app_permission_warning),
                         Toast.LENGTH_SHORT
                     ).show()
                 }
@@ -111,11 +116,18 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             viewModel.getStoriesLocation(token).collect { result ->
                 result.onSuccess {
                     it.listStory.forEach { story ->
-                        val storyLocation = LatLng(story.lat, story.lon)
                         mMap.addMarker(
-                            MarkerOptions().position(storyLocation).title(story.name)
+                            MarkerOptions().position(LatLng(story.lat, story.lon)).title(story.name)
+                                .snippet(story.createdAt)
                         )
                     }
+                }
+                result.onFailure {
+                    Toast.makeText(
+                        this@MapsActivity,
+                        getString(R.string.connection_warning),
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
         }

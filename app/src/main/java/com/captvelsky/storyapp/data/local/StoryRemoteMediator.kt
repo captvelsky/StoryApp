@@ -1,14 +1,16 @@
-package com.captvelsky.storyapp.data.local.database
+package com.captvelsky.storyapp.data.local
 
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadType
 import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
 import androidx.room.withTransaction
+import com.captvelsky.storyapp.data.local.database.RemoteKeys
+import com.captvelsky.storyapp.data.local.database.StoryDatabase
 import com.captvelsky.storyapp.data.remote.retrofit.ApiService
 import java.lang.Exception
 
-@ExperimentalPagingApi
+@OptIn(ExperimentalPagingApi::class)
 class StoryRemoteMediator(
     private val database: StoryDatabase,
     private val apiService: ApiService,
@@ -43,19 +45,22 @@ class StoryRemoteMediator(
         }
 
         try {
-            val responseData = apiService.getStories(token, page, state.config.pageSize)
+            val responseData = apiService.getStories(token, page, state.config.pageSize, null)
             val eofPaginationReached = responseData.listStory.isEmpty()
 
             database.withTransaction {
+
                 if (loadType == LoadType.REFRESH) {
                     database.remoteKeysDao().deleteRemoteKeys()
                     database.storyDao().deleteAll()
                 }
+
                 val prevKey = if (page == 1) null else page - 1
                 val nextKey = if (eofPaginationReached) null else page + 1
                 val keys = responseData.listStory.map {
                     RemoteKeys(id = it.id, prevKey = prevKey, nextKey = nextKey)
                 }
+
                 database.remoteKeysDao().insertAll(keys)
                 responseData.listStory.forEach {
                     val story = StoryResponseItem(
@@ -70,8 +75,11 @@ class StoryRemoteMediator(
                     database.storyDao().insertStory(story)
                 }
             }
+
             return MediatorResult.Success(endOfPaginationReached = eofPaginationReached)
+
         } catch (exception: Exception) {
+
             return MediatorResult.Error(exception)
         }
     }

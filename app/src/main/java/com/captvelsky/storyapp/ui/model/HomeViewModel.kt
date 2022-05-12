@@ -8,12 +8,12 @@ import androidx.paging.ExperimentalPagingApi
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.captvelsky.storyapp.data.local.AppRepository
-import com.captvelsky.storyapp.data.local.database.StoryResponseItem
+import com.captvelsky.storyapp.data.local.StoryResponseItem
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-@ExperimentalPagingApi
+@OptIn(ExperimentalPagingApi::class)
 @HiltViewModel
 class HomeViewModel @Inject constructor(private var repository: AppRepository) : ViewModel() {
 

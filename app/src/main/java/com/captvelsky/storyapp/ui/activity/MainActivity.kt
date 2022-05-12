@@ -11,7 +11,7 @@ import com.captvelsky.storyapp.ui.model.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.*
 
-@ExperimentalPagingApi
+@OptIn(ExperimentalPagingApi::class)
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 

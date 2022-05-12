@@ -40,7 +40,7 @@ object AppModule {
     @Singleton
     fun provideDatabase(@ApplicationContext context: Context): StoryDatabase {
         return Room.databaseBuilder(
-            context.applicationContext,
+            context,
             StoryDatabase::class.java,
             "story_database"
         ).build()

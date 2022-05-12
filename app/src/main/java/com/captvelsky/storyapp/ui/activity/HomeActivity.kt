@@ -18,7 +18,7 @@ import com.captvelsky.storyapp.databinding.ActivityHomeBinding
 import com.captvelsky.storyapp.ui.model.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
-@ExperimentalPagingApi
+@OptIn(ExperimentalPagingApi::class)
 @AndroidEntryPoint
 class HomeActivity : AppCompatActivity() {
 
@@ -34,7 +34,6 @@ class HomeActivity : AppCompatActivity() {
         setSupportActionBar(binding.toolbar)
         showLoading(true)
 
-        //set recyclerview
         storyAdapter = StoryAdapter()
         recyclerView = binding.rvStories
         recyclerView.layoutManager = LinearLayoutManager(this)

@@ -10,6 +10,7 @@ import com.captvelsky.storyapp.databinding.ItemLoadingBinding
 
 class LoadingStateAdapter(private val retry: () -> Unit) :
     LoadStateAdapter<LoadingStateAdapter.LoadingStateViewHolder>() {
+
     override fun onCreateViewHolder(
         parent: ViewGroup,
         loadState: LoadState
